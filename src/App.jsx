@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import Header from './components/Header'
+import Products from './components/Products'
 
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
   return (
     <div className={`transform transition-transform duration-500 ${isMenuOpen === false ? '' : 'translate-x-full'}`}>
       <Header isMenuOpen={isMenuOpen} SetIsMenuOpen={SetIsMenuOpen}></Header>
+      <Products></Products>
     </div>
   )
 }
