@@ -17,14 +17,14 @@ export default function Products() {
       <div className='flex justify-center items-center '>
       <div className='grid grid-cols-1 place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-y-20 gap-x-10 p-5 sm:p-[50px]'>
         {PRODUCTS.map((product) => (
-          <div className={`flex-col gap-10  duration-500 ${hoveredProductId && hoveredProductId !== product.id ? 'blur-md' : ''}`}>
+          <div className={`flex-col gap-10 duration-500 ${hoveredProductId && hoveredProductId !== product.id ? 'blur-md' : ''}`}>
             <div
               key={product.id}
               className={`cursor-pointer `}
               onMouseEnter={() => setHoveredProductId(product.id)}
               onMouseLeave={() => setHoveredProductId(null)}
             >
-              <img className='border-[1px] border-[#00FF85] ' src={product.image} alt={product.name} />
+              <img className='border-[1px] border-[#00FF85] object-fill' src={product.image} alt={product.name} />
               
             </div>
             <div className='mt-2 font-medium text-2xl'>{product.name}</div>
