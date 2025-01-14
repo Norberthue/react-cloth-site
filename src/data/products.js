@@ -4,7 +4,7 @@ export const PRODUCTS = [
         id: 1,
         name: 'UCG DENIM 001 (WASHED BLACK)',
         price: 150,
-        image: '../assets/images/1.webp',
+        image: '../assets/images/13.webp',
         slug: 'UCG-001'  
     },
     {
@@ -88,7 +88,7 @@ export const PRODUCTS = [
         id: 13,
         name: 'UCG DENIM 013 (WASHED GREY)',
         price: 150,
-        image: '../assets/images/13.webp',
+        image: '../assets/images/1.webp',
         slug: 'UCG-013'
     },
     {
