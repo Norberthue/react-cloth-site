@@ -14,7 +14,7 @@ export default function Header(props) {
   return (
     <div className='h-20 p-5 sm:p-[50px] flex justify-between font-medium text-2xl'>
         <div onClick={() => SetIsMenuOpen(!isMenuOpen)} className='sm:hidden block cursor-pointer'>Menu</div>
-        <div className={`absolute  pl-5  -left-full w-full
+        <div className={`absolute border-r-4 border-black  pl-5 h-screen  -left-full w-full
           bg-white 
              transform transition-transform 
             ${isMenuOpen ? 'opacity-100 pointer-events-auto': 'opacity-0 pointer-events-none'}`}
@@ -25,7 +25,8 @@ export default function Header(props) {
                 <li onClick={() => SetIsMenuOpen(!isMenuOpen)} className='pb-3 text-3xl'>Close Menu</li>
                 <Link onClick={() => SetIsMenuOpen(!isMenuOpen)} to={'/'}><li className='text-5xl font-semibold'>Products</li></Link>
                 <Link onClick={() => SetIsMenuOpen(!isMenuOpen)} to={'/info'}><li className='text-5xl font-semibold'>Info</li></Link>
-                <Link><li className='text-5xl font-semibold'>Follow</li></Link>
+                <li className='text-5xl font-semibold'>Instagram</li>
+                <li className='text-5xl font-semibold'>Facebook</li>
             </ul>       
         </div>
         <div>
@@ -42,7 +43,7 @@ export default function Header(props) {
             <h1 className='hidden sm:block'>EUR |</h1>
             <h1>Cart (0)</h1>
         </div>
-        <div className={`absolute flex justify-between md:w-[700px] lg:w-[900px] xl:w-[1200px] 2xl:w-[1800px]  -top-5    
+        <div className={`absolute flex justify-between border-black border-b-2 pb-2 md:w-[700px] lg:w-[900px] xl:w-[1200px] 2xl:w-[1800px]  -top-5    
           bg-white 
              transform transition-transform 
             ${isFollowOpen ? 'opacity-100 pointer-events-auto': 'opacity-0 pointer-events-none hidden'}`}
@@ -62,7 +63,7 @@ export default function Header(props) {
                 </div>
                     
                 
-            </div>
+        </div>
         
     </div>
   )
