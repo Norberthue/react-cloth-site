@@ -2,16 +2,16 @@ import React from 'react'
 
 export default function info() {
   return (
-    <div className='flex gap-96 p-5 sm:p-[50px]'>
+    <div className='flex flex-col sm:flex-row gap-10 sm:gap-40 lg:gap-80  p-5 sm:p-[50px]'>
         <div>
-            <p className='font-semibold'>Contact</p>
-            <p>- - - - - -</p>
+            <p className='font-semibold text-2xl'>Contact</p>
+            <p className='text-2xl'>- - - - - -</p>
             <p>info@sadboysgear.com</p>
         </div>
-        <div className='flex-col  w-3/4'>
+        <div className='flex-col w-3/4'>
             <div className='mb-5'>
-                <h1 className='font-semibold'>Return policy</h1>
-                <p>- - - - - -</p>
+                <h1 className='font-semibold text-2xl'>Return policy</h1>
+                <p className='text-2xl'>- - - - - -</p>
                 <p>Purchases from sadboysgear.com are eligible for return within 30 days of delivery. The customer pays for the shipping back to our warehouse.
                     We do not allow exchanges; simply return you original purchase, and place a new order.
                     The item must be in the same condition as when you received it. We do not accept items that have been worn, altered or washed.
@@ -19,8 +19,8 @@ export default function info() {
                 </p>
             </div>
             <div className='mb-5'>
-                <h1 className='font-semibold'>Shipping</h1>
-                <p>- - - - - -</p>
+                <h1 className='font-semibold text-2xl'>Shipping</h1>
+                <p className='text-2xl'>- - - - - -</p>
                 <p>All Sadboys Gear orders are shipped from Borås, Sweden via UPS Worldwide.
 
                     Shipping rates are determined by weight, destination, and how fast you want to receive your package at point of purchase.
@@ -41,8 +41,8 @@ export default function info() {
                 </p>
             </div>
             <div>
-                <h1 className='font-semibold'>Information</h1>
-                <p>- - - - - -</p>
+                <h1 className='font-semibold text-2xl'>Information</h1>
+                <p className='text-2xl'>- - - - - -</p>
                 <p>
                     Sadboysgear.com and it's content is owned and operated by YEAR0001 AB, Krukmakargatan 36, 118 51, Stockholm, Sweden. All rights reserved.
                 </p>
