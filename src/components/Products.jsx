@@ -14,7 +14,7 @@ import { PRODUCTS } from '../data/products'
 export default function Products() {
     const [hoveredProductId, setHoveredProductId] = useState(null)
     return (
-      <div className='flex justify-center items-center '>
+      <div id={'sortiment'} className='flex justify-center items-center '>
       <div className='grid grid-cols-1 place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-y-20 gap-x-10 p-5 sm:p-[50px]'>
         {PRODUCTS.map((product) => (
           <div key={product.id} className={`flex-col gap-10 duration-500 ${hoveredProductId && hoveredProductId !== product.id ? 'blur-md' : ''}`}>

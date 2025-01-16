@@ -2,9 +2,9 @@
 export const PRODUCTS = [
     {
         id: 1,
-        name: 'SBG SHIRT 002 (WHITE/BLACK)',
+        name: 'SBG KNIT SWEATER 001 (BLACK) ',
         price: 150,
-        image: '../assets/images/13.webp',
+        image: '../assets/images/23.webp',
         slug: 'UCG-001'  
     },
     {
@@ -156,9 +156,9 @@ export const PRODUCTS = [
     },
     {
         id: 23,
-        name: 'SBG KNIT SWEATER 001 (BLACK) ',
-        price: 260,
-        image: '../assets/images/23.webp',
+        name: 'SBG SHIRT 002 (WHITE/BLACK)',
+        price: 60,
+        image: '../assets/images/13.webp',
         slug: 'UCG-023'
     },
     {
