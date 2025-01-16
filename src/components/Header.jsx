@@ -34,7 +34,7 @@ export default function Header(props) {
         </div>
         <nav className='hidden basis-2/12 md:block'>
             <ul className='flex gap-4'>
-                <Link to={'/'}><li className='text-2xl  cursor-pointer'>Products,</li></Link>
+                <Link to={'/'} ><li className='text-2xl  cursor-pointer'>Products,</li></Link>
                 <Link to={'/info'}><li className='text-2xl  cursor-pointer'>Info,</li></Link>
                 <li onClick={() => SetIsFollowOpen(!isFollowOpen)} className='text-2xl  cursor-pointer'>Follow,</li>
             </ul>

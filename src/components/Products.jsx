@@ -1,16 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { PRODUCTS } from '../data/products'
-/**
- * Products component renders a grid of product items.
- * Each product displays an image, name, and price.
- *
- * @component
- * @example
- * return (
- *   <Products />
- * )
- */
+
+
 export default function Products() {
     const [hoveredProductId, setHoveredProductId] = useState(null)
     return (

@@ -16,12 +16,12 @@ function App() {
   const [blur, setBlur] = useState(false)
   const[showImage, setShowImage] = useState(true)
   const location = useLocation()
-  const { slug } = useParams()
+  
   
   
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious();
-    if (latest > previous && latest > 750) {
+    if (latest > previous && latest > 850) {
       setHidden(true)
     } else if (latest > previous && latest > 300) {
       setBlur(true)
@@ -29,26 +29,23 @@ function App() {
       setBlur(false)
     }
   })
-  console.log(slug)
+  
   useEffect(() => {
-        // This code will run when the component mounts
-        
         const timer = setTimeout(() => {
             setShowImage(false);
-        }, 2000);
-
-        // Cleanup the timer when the component unmounts
+        }, 1000);
+        setShowImage(true)
         return () => clearTimeout(timer);
-    }, [slug]);
-
+    }, [location.pathname]);
+    
   return (
     <AnimatePresence mode='wait'>
         <div className={`duration-500 delay-200  ${isMenuOpen === false ? '' : 'translate-x-full'}  ${isFollowOpen === false ? '' : 'translate-y-10'}`}>
-          <motion.div 
+          <div 
           className={`${hidden ? 'hidden' : 'block'}  duration-500 relative`}>
-            <img src='/assets/images/bg.webp' className={`object-cover h-screen w-screen ${blur ? 'blur-md' : ''} duration-500`} alt='background'></img>
+                <img src='/assets/images/bg.webp' className={`object-cover h-screen w-screen ${blur ? 'blur-md' : ''} duration-500`} alt='background'></img>
                 <svg className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' version="1.1" id="Lager_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 499.8 331" xmlSpace="preserve">
-                  <g stroke="#5700ff" strokeWidth="1.5" fill="none">
+                  <g stroke="#5700ff" strokeWidth="2.0" fill="none">
                     <path vectorEffect="non-scaling-stroke" className="st0" d="M450.8,179.6c0,0.4,0,1.2,0,1.9c-0.1,0.3-0.2,0.5-0.4,0.8
                       c-0.3,0.5-0.6,0.9-0.9,1.4c-0.2,0.4,0,1-0.4,1.4c-0.2,0.4-0.2,0.9-0.4,1.4c-0.2,0.4-0.3,1-0.3,1.4c-0.1,0.9-0.5,1.6-0.9,2.2
                       c-0.4,0.6-0.7,1.2-1.1,1.9c0.1,0.9-0.3,1.8-0.7,2.7c-0.4,1-0.8,2-1.1,3c-0.5,1.3-1.1,2.5-1.6,3.8c-0.5,1.1-0.9,2.2-1.3,3.2
@@ -645,15 +642,11 @@ function App() {
                       c-0.2,0.7,0.6,1.3,0.3,2.1c-0.4,0.7-0.9,1.4-1.3,2.1c-0.4,0.1-0.8,0.1-1.1,0.2C102.6,131.6,102.2,131.7,102.1,131.8z"></path>
                   </g>
                 </svg>
-          </motion.div>
-          <AnimatePresence mode='wait' >
-              {showImage && <motion.svg
-                 initial={{opacity: 0,  }}
-                 animate={{opacity: 1,  }}
-                 exit={{opacity: 0,}}
-                 transition={{duration: 1 ,ease: "easeInOut"}}
-                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 duration-500`} version="1.1" id="Lager_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 499.8 331" xmlSpace="preserve">
-                  <g stroke="#5700ff" strokeWidth="1.5" fill="none">
+          </div>
+          <AnimatePresence mode='wait' initial={false}>
+              {<motion.svg
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none ${showImage ? 'opacity-100' : 'opacity-0'} z-10 duration-1000 ease-in-out `} version="1.1" id="Lager_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 499.8 331" xmlSpace="preserve">
+                  <g stroke="#5700ff" strokeWidth="2.0" fill="none">
                     <path vectorEffect="non-scaling-stroke" className="st0" d="M450.8,179.6c0,0.4,0,1.2,0,1.9c-0.1,0.3-0.2,0.5-0.4,0.8
                       c-0.3,0.5-0.6,0.9-0.9,1.4c-0.2,0.4,0,1-0.4,1.4c-0.2,0.4-0.2,0.9-0.4,1.4c-0.2,0.4-0.3,1-0.3,1.4c-0.1,0.9-0.5,1.6-0.9,2.2
                       c-0.4,0.6-0.7,1.2-1.1,1.9c0.1,0.9-0.3,1.8-0.7,2.7c-0.4,1-0.8,2-1.1,3c-0.5,1.3-1.1,2.5-1.6,3.8c-0.5,1.1-0.9,2.2-1.3,3.2
@@ -1249,7 +1242,7 @@ function App() {
                       c0.1-0.1,0.3-0.1,0.4-0.2c1.1-0.7,2.5-0.9,3.7-1.3c0.1,0,0.3,0,0.5,0c0.1,0.1,0.3,0.2,0.4,0.3c0.1,0.1,0.2,0.2,0.2,0.3
                       c-0.2,0.7,0.6,1.3,0.3,2.1c-0.4,0.7-0.9,1.4-1.3,2.1c-0.4,0.1-0.8,0.1-1.1,0.2C102.6,131.6,102.2,131.7,102.1,131.8z"></path>
                   </g>
-                </motion.svg>}
+              </motion.svg>}
           </AnimatePresence>
                 
           <Header isFollowOpen={isFollowOpen} SetIsFollowOpen={SetIsFollowOpen} isMenuOpen={isMenuOpen} SetIsMenuOpen={SetIsMenuOpen}></Header>
