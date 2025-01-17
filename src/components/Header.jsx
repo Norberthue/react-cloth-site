@@ -5,6 +5,11 @@ import { AnimatePresence } from 'framer-motion';
 export default function Header(props) {
   const {isMenuOpen, SetIsMenuOpen , isFollowOpen, SetIsFollowOpen} = props
   const [date, setDate] = useState(new Date())
+  const [whichPage, setWhichPage] = useState('/')
+
+  function handlePage(page) {
+    return () => {setWhichPage(page)}
+  }
 
   useEffect(() => {
     var timer = setInterval(() => setDate(new Date()), 1000)
@@ -28,7 +33,7 @@ export default function Header(props) {
             >
             <ul className='flex flex-col gap-4'>
                 <li onClick={() => SetIsMenuOpen(!isMenuOpen)} className='pb-3 text-3xl'>Close Menu</li>
-                <Link onClick={() => SetIsMenuOpen(!isMenuOpen)} to={'/'}><li className='text-5xl font-semibold'>Products</li></Link>
+                <Link onClick={() => SetIsMenuOpen(!isMenuOpen)}  to={'/'}><li className='text-5xl font-semibold'>Products</li></Link>
                 <Link onClick={() => SetIsMenuOpen(!isMenuOpen)} to={'/info'}><li className='text-5xl font-semibold'>Info</li></Link>
                 <li className='text-5xl font-semibold'>Instagram</li>
                 <li className='text-5xl font-semibold'>Facebook</li>
@@ -38,9 +43,9 @@ export default function Header(props) {
             <p>UCG {date.getHours()}<span className='ml-1 mr-1'>:</span>{(date.getMinutes() < 10 ? '0': '') +date.getMinutes()}</p>
         </div>
         <nav className='hidden basis-2/12 md:block'>
-            <ul className='flex gap-4'>
-                <Link to={'/'} ><li className='text-2xl  cursor-pointer'>Products,</li></Link>
-                <Link to={'/info'}><li className='text-2xl  cursor-pointer'>Info,</li></Link>
+            <ul className='flex gap-4 items-center text-center'>
+                <Link to={'/'} onClick={handlePage('/')} ><li className={`text-2xl  cursor-pointer ${whichPage === '/' ? 'underline underline-offset-4 decoration-black duration-500 ': '' }`}>Products,</li></Link>
+                <Link to={'/info'}  onClick={handlePage('info')} ><li className={`text-2xl list-inside duration-500  cursor-pointer ${whichPage === 'info' ? 'underline underline-offset-4 decoration-black duration-200 ': '' }`}>Info,</li></Link>
                 <li onClick={() => SetIsFollowOpen(!isFollowOpen)} className='text-2xl  cursor-pointer'>Follow,</li>
             </ul>
         </nav>
