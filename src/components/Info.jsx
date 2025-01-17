@@ -1,8 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { motion } from 'framer-motion'
 export default function info() {
-    const text ='Purchases from sadboysgear.com are eligible for return within 30 days of delivery. The customer pays for the shipping back to our warehouse.'.split(' ')
-    const text2 = 'We do not allow exchanges; simply return you original purchase, and place a new order.'.split(' ')
+   
     return (
     <motion.div
     initial={{opacity: 0,  }}
@@ -19,24 +18,9 @@ export default function info() {
             <div className='mb-10'>
                 <h1 className='font-semibold text-2xl'>Return policy</h1>
                 <p className='text-2xl'>- - - - - -</p>
-                <div className=' text-lg '>{text.map((el,i) => (
-                    <motion.span
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{
-                        duration: 0.25,
-                        delay: i / 30,
-                        }}
-                        className='mb-10 ' key={i}>{el}{' '}</motion.span>))}
-                    {text2.map((el,i) => (
-                    <motion.span
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{
-                        duration: 0.25,
-                        delay: i / 30,
-                        }}
-                        className='mb-10 ' key={i}>{el}{' '}</motion.span>))}
+                <div className=' text-lg '>
+                    <span className='mb-5 line-clamp-5'>Purchases from sadboysgear.com are eligible for return within 30 days of delivery. The customer pays for the shipping back to our warehouse.</span>
+                    <span className='mb-5 line-clamp-5'>We do not allow exchanges; simply return you original purchase, and place a new order.</span>
                     <span className='mb-5 line-clamp-5'>The item must be in the same condition as when you received it. We do not accept items that have been worn, altered or washed.</span>
                     Refunds will be credited to the credit card used to purchase the item, once it has arrived in our warehouse. If you require any help with your return, contact us at info@sadboysgear.com
                 </div>
