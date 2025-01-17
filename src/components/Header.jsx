@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {Link} from "react-router-dom"
-
+import { motion } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion';
 export default function Header(props) {
   const {isMenuOpen, SetIsMenuOpen , isFollowOpen, SetIsFollowOpen} = props
   const [date, setDate] = useState(new Date())
@@ -12,7 +13,11 @@ export default function Header(props) {
     }
   })
   return (
-    <div id='header' className='h-20 p-5 sm:p-[50px] flex justify-between font-medium text-2xl'>
+    <motion.div
+    initial={{opacity: 0,  }}
+    animate={{opacity: 1,  }}
+    transition={{duration: 1 ,ease: "easeInOut"}}
+    id='header' className='h-20 p-5 sm:p-[50px] flex justify-between font-medium text-2xl'>
         <div onClick={() => SetIsMenuOpen(!isMenuOpen)} className='sm:hidden block cursor-pointer'>Menu</div>
         <div className={`absolute border-r-4 border-black  pl-5 h-screen  -left-full w-full
           bg-white 
@@ -43,12 +48,11 @@ export default function Header(props) {
             <h1 className='hidden sm:block'>EUR |</h1>
             <h1>Cart (0)</h1>
         </div>
-        <div className={`absolute flex justify-between border-black border-b-2 pb-2 md:w-[700px] lg:w-[900px] xl:w-[1330px] 2xl:w-[1800px]  -top-5    
+        <div
+        
+        className={`absolute  left-1/2 -translate-x-1/2 opacity-0 hidden sm:flex justify-between border-black border-b-2 pb-2 md:w-[700px] lg:w-[900px] xl:w-[1330px] 2xl:w-[1800px]      
           bg-white 
-             transform transition-transform 
-            ${isFollowOpen ? 'opacity-100 pointer-events-auto': 'opacity-0 pointer-events-none hidden'}`}
-            
-            style={{transition: "transform 3s ease, opacity 1 ease"}}
+            ${isFollowOpen ? 'opacity-100 -top-5 pointer-events-auto': 'opacity-0 -top-10 pointer-events-none '} duration-500 ease-in-out`}
             >
                 <div className='flex text-sm lg:text-2xl  gap-4'>
                     <p>Newsletter:</p>
@@ -61,10 +65,9 @@ export default function Header(props) {
                     <div>Instagram</div>
                     <div>Twitter</div>
                 </div>
-                    
-                
         </div>
         
-    </div>
+    </motion.div>
+    
   )
 }

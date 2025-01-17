@@ -1,8 +1,13 @@
 import React from 'react'
-
+import { motion } from 'framer-motion'
 export default function info() {
   return (
-    <div className='flex flex-col sm:flex-row justify-between   p-5 sm:p-[50px]'>
+    <motion.div
+    initial={{opacity: 0,  }}
+    animate={{opacity: 1,  }}
+    
+    transition={{duration: 1 ,ease: "easeInOut"}}
+    className='flex flex-col sm:flex-row justify-between   p-5 sm:p-[50px]'>
         <div className='mb-5'>
             <p className='font-semibold text-2xl'>Contact</p>
             <p className='text-2xl'>- - - - - -</p>
@@ -49,6 +54,6 @@ export default function info() {
             </div>
             
         </div>
-    </div>
+    </motion.div>
   )
 }

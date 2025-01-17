@@ -1,12 +1,17 @@
 import React from 'react'
 import { useState } from 'react'
 import { PRODUCTS } from '../data/products'
-
+import { motion } from 'framer-motion'
 
 export default function Products() {
     const [hoveredProductId, setHoveredProductId] = useState(null)
     return (
-      <div id={'sortiment'} className='flex justify-center items-center '>
+      <motion.div
+      initial={{opacity: 0,  }}
+      animate={{opacity: 1,  }}
+      
+      transition={{duration: 1 ,ease: "easeInOut"}}
+      id={'sortiment'} className='flex justify-center items-center '>
       <div className='grid grid-cols-1 place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-y-20 gap-x-10 p-5 sm:p-[50px]'>
         {PRODUCTS.map((product) => (
           <div key={product.id} className={`flex-col gap-10 duration-500 ${hoveredProductId && hoveredProductId !== product.id ? 'blur-md' : ''}`}>
@@ -23,6 +28,6 @@ export default function Products() {
           </div>
         ))}
       </div>
-      </div>
+      </motion.div>
     )
 }
