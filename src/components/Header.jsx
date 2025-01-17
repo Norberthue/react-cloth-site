@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import {Link} from "react-router-dom"
 import { motion } from 'framer-motion'
-import { AnimatePresence } from 'framer-motion';
+
 export default function Header(props) {
-  const {isMenuOpen, SetIsMenuOpen , isFollowOpen, SetIsFollowOpen} = props
+  const {isMenuOpen, setIsMenuOpen , isFollowOpen, setIsFollowOpen} = props
   const [date, setDate] = useState(new Date())
   const [whichPage, setWhichPage] = useState('/')
 
@@ -23,7 +23,7 @@ export default function Header(props) {
     animate={{opacity: 1,  }}
     transition={{duration: 1 ,ease: "easeInOut"}}
     id='header' className='h-20 p-5 sm:p-[50px] flex justify-between font-medium text-2xl'>
-        <div onClick={() => SetIsMenuOpen(!isMenuOpen)} className='sm:hidden block cursor-pointer'>Menu</div>
+        <div onClick={() => setIsMenuOpen(!isMenuOpen)} className='sm:hidden block cursor-pointer'>Menu</div>
         <div className={`absolute border-r-4 border-black  pl-5 h-screen  -left-full w-full
           bg-white 
              transform transition-transform 
@@ -32,9 +32,9 @@ export default function Header(props) {
             style={{transition: "transform 1s ease, opacity 1 ease"}}
             >
             <ul className='flex flex-col gap-4'>
-                <li onClick={() => SetIsMenuOpen(!isMenuOpen)} className='pb-3 text-3xl'>Close Menu</li>
-                <Link onClick={() => SetIsMenuOpen(!isMenuOpen)}  to={'/'}><li className='text-5xl font-semibold'>Products</li></Link>
-                <Link onClick={() => SetIsMenuOpen(!isMenuOpen)} to={'/info'}><li className='text-5xl font-semibold'>Info</li></Link>
+                <li onClick={() => setIsMenuOpen(!isMenuOpen)} className='pb-3 text-3xl'>Close Menu</li>
+                <Link onClick={() => setIsMenuOpen(!isMenuOpen)}  to={'/'}><li className='text-5xl font-semibold'>Products</li></Link>
+                <Link onClick={() => setIsMenuOpen(!isMenuOpen)} to={'/info'}><li className='text-5xl font-semibold'>Info</li></Link>
                 <li className='text-5xl font-semibold'>Instagram</li>
                 <li className='text-5xl font-semibold'>Facebook</li>
             </ul>       
@@ -46,7 +46,7 @@ export default function Header(props) {
             <ul className='flex gap-4 items-center text-center'>
                 <Link to={'/'} onClick={handlePage('/')} ><li className={`text-2xl  cursor-pointer ${whichPage === '/' ? 'underline underline-offset-4 decoration-black duration-500 ': '' }`}>Products,</li></Link>
                 <Link to={'/info'}  onClick={handlePage('info')} ><li className={`text-2xl list-inside duration-500  cursor-pointer ${whichPage === 'info' ? 'underline underline-offset-4 decoration-black duration-200 ': '' }`}>Info,</li></Link>
-                <li onClick={() => SetIsFollowOpen(!isFollowOpen)} className='text-2xl  cursor-pointer'>Follow,</li>
+                <li onClick={() => setIsFollowOpen(!isFollowOpen)} className='text-2xl  cursor-pointer'>Follow,</li>
             </ul>
         </nav>
         <div className='flex gap-4'>
