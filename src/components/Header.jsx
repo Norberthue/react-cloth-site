@@ -19,8 +19,8 @@ export default function Header(props) {
   })
   return (
     <motion.div
-    initial={{opacity: 0,  }}
-    animate={{opacity: 1,  }}
+    initial={{opacity: 0}}
+    animate={{opacity: 1}}
     transition={{duration: 1 ,ease: "easeInOut"}}
     id='header' className='h-20 p-5 sm:p-[50px] flex justify-between font-medium text-2xl'>
         <div onClick={() => setIsMenuOpen(!isMenuOpen)} className='sm:hidden block cursor-pointer'>Menu</div>

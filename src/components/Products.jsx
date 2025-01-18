@@ -1,12 +1,16 @@
-import React from 'react'
-import { useState } from 'react'
+import React , { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { PRODUCTS } from '../data/products'
 import { motion } from 'framer-motion'
+
+
 
 export default function Products() {
     const [hoveredProductId, setHoveredProductId] = useState(null)
     return (
       <motion.div
+      
+
       initial={{opacity: 0,  }}
       animate={{opacity: 1,  }}
       
@@ -21,7 +25,9 @@ export default function Products() {
               onMouseEnter={() => setHoveredProductId(product.id)}
               onMouseLeave={() => setHoveredProductId(null)}
             >
-              <img className='border-[1px] border-[#00FF85] object-fill' src={product.image} alt={product.name} />
+              <Link to={product.slug}>
+                <img className='border-[1px] border-[#00FF85] object-fill' src={product.image} alt={product.name} />
+              </Link>
               
             </div>
             <div className='mt-2 font-medium text-2xl'>{product.name}</div>
