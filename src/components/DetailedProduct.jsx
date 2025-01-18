@@ -6,11 +6,10 @@ export default function DetailedProduct() {
     const { slug } = useParams()
     const [detail, setDetail] = useState([])
     const [isShowMore, setIsShowMore] = useState(false)
-    const [isShowSize, setIsShowSize] = useState(true)
-    let findDetail= []
+    
     
     useEffect(() => {
-        findDetail = PRODUCTS.filter((product) => product.slug === slug)
+        const findDetail = PRODUCTS.filter((product) => product.slug === slug)
         
         if (findDetail.length > 0) {
             setDetail(findDetail[0])
@@ -32,7 +31,7 @@ export default function DetailedProduct() {
                 <p className=' text-5xl font-semibold'>${detail.price} USD</p>
             </div>
             <p className=''>Stock: In-Stock</p>
-            {isShowSize && <div className='flex gap-4 '>
+            {detail.hasSizes && <div className='flex gap-4 '>
                 <h1>Sizes:</h1>
                 <ul className='flex gap-4 '>
                     <li>S</li>
