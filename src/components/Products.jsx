@@ -9,11 +9,8 @@ export default function Products() {
     const [hoveredProductId, setHoveredProductId] = useState(null)
     return (
       <motion.div
-      
-
       initial={{opacity: 0,  }}
       animate={{opacity: 1,  }}
-      
       transition={{duration: 1 ,ease: "easeInOut"}}
       id={'sortiment'} className='flex justify-center items-center '>
       <div className='grid grid-cols-1 place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-y-20 gap-x-10 p-5 sm:p-[50px]'>

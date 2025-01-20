@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import {Link} from "react-router-dom"
 import { motion } from 'framer-motion'
+import { useSelector, useDispatch } from 'react-redux'
+import { toggleStatusTab } from '../stores/cart';
 
 export default function Header(props) {
   const {isMenuOpen, setIsMenuOpen , isFollowOpen, setIsFollowOpen} = props
   const [date, setDate] = useState(new Date())
   const [whichPage, setWhichPage] = useState('/')
-
+  const [totalQuantity, setTotalQuantity] = useState(0);
+  const carts = useSelector(store => store.cart.items);
+  const dispatch = useDispatch()
+  
   function handlePage(page) {
     return () => {setWhichPage(page)}
   }
@@ -17,6 +22,17 @@ export default function Header(props) {
         clearInterval(timer)
     }
   })
+   //total count of items
+   useEffect(() => {
+      let total = 0;
+      carts.forEach(item => total += item.quantity);
+      
+      setTotalQuantity(total)
+    }, [carts])
+
+  const handleOpenTabCart = () => {
+    dispatch(toggleStatusTab())
+  }
   return (
     <motion.div
     initial={{opacity: 0}}
@@ -50,8 +66,8 @@ export default function Header(props) {
             </ul>
         </nav>
         <div className='flex gap-4'>
-            <h1 className='hidden sm:block'>EUR |</h1>
-            <h1>Cart (0)</h1>
+            <h1 className='hidden sm:block cursor-pointer'>EUR |</h1>
+            <h1 className='cursor-pointer' onClick={handleOpenTabCart}>Cart ({totalQuantity})</h1>
         </div>
         <div
         

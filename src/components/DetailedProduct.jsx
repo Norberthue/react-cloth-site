@@ -2,22 +2,36 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { PRODUCTS } from '../data/products'
+import { useDispatch, useSelector } from 'react-redux'
+import { addToCart } from '../stores/cart'
+
 export default function DetailedProduct() {
     const { slug } = useParams()
     const [detail, setDetail] = useState([])
     const [isShowMore, setIsShowMore] = useState(false)
-    
+    const [quantity, setQuantity] = useState(1)
+    const [selectSize, setSelectSize] = useState('S')
+
     
     useEffect(() => {
         const findDetail = PRODUCTS.filter((product) => product.slug === slug)
-        
         if (findDetail.length > 0) {
             setDetail(findDetail[0])
         } else {
             window.location.href = '/'
         }
-
     }, [slug])
+
+    //adding items to cart with redux
+    const carts = useSelector(store => store.cart.items);
+    const dispatch = useDispatch();
+    const handleAddToCart = () => {
+        dispatch(addToCart({
+            productId: detail.id,
+            quantity: quantity,
+            size: selectSize
+        }))
+    }
     
     return (
     <motion.div 
@@ -34,13 +48,13 @@ export default function DetailedProduct() {
             {detail.hasSizes && <div className='flex gap-4 '>
                 <h1>Sizes:</h1>
                 <ul className='flex gap-4 '>
-                    <li>S</li>
-                    <li>M</li>
-                    <li>L</li>
-                    <li>XL</li>
+                    <li className={`cursor-pointer ${selectSize === 'S' ? 'line-through' : '' }`} onClick={() => {setSelectSize('S')}}>S</li>
+                    <li className={`cursor-pointer ${selectSize === 'M' ? 'line-through' : '' }`} onClick={() => {setSelectSize('M')}}>M</li>
+                    <li className={`cursor-pointer ${selectSize === 'L' ? 'line-through' : '' }`} onClick={() => {setSelectSize('L')}}>L</li>
+                    <li className={`cursor-pointer ${selectSize === 'XL' ? 'line-through' : '' }`} onClick={() => {setSelectSize('XL')}}>XL</li>
                  </ul>
             </div>}
-            <motion.button whileTap={{scale : 0.85}} className=' max-w-[300px] bg-black text-white p-2'>Add to Cart</motion.button>
+            <motion.button whileTap={{scale : 0.85}} onClick={handleAddToCart} className=' max-w-[300px] bg-black text-white p-2'>Add to Cart</motion.button>
             <p className='text-2xl mt-10 max-w-[800px]'>{detail.info}</p>
             
             <div onClick={() => setIsShowMore(!isShowMore)} className='relative flex flex-col cursor-pointer'>

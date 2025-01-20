@@ -7,7 +7,9 @@ import Info from './components/info'
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
 import { AnimatePresence } from 'framer-motion';
 import DetailedProduct from './components/DetailedProduct'
-
+import CartTab from './components/CartTab'
+import { useSelector } from 'react-redux'
+import Checkout from './components/Checkout'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -17,6 +19,7 @@ function App() {
   const [blur, setBlur] = useState(false)
   const[showImage, setShowImage] = useState(true)
   const location = useLocation()
+  const statusTabCart = useSelector(store => store.cart.statusTab)
   
   
   
@@ -40,12 +43,12 @@ function App() {
     }, [location.pathname]);
     
   return (
-    <AnimatePresence>
+    <div>
         <motion.div
         initial={{ opacity: 0 }}
         animate={{opacity: 1 }}
         transition={{ duration: 1,  ease: "easeInOut" }}
-        className={`duration-500   ${isMenuOpen === false ? '' : 'translate-x-full'}  ${isFollowOpen === false ? '' : 'translate-y-10'}`}>
+        className={`duration-500 trasfrom transition-transform ${statusTabCart === false ? '' : '-translate-x-80 blur-md'}   ${isMenuOpen === false ? '' : 'translate-x-full'}  ${isFollowOpen === false ? '' : 'translate-y-10'}`}>
           
           <div className={`${hidden ? 'hidden' : 'block'}  duration-500 relative`}>
               <img src='/assets/images/bg.webp' className={`object-cover h-screen w-screen ${blur ? 'blur-md' : ''} duration-500`} alt='background'></img>
@@ -1264,17 +1267,17 @@ function App() {
               </g>
           </motion.svg>
          
-          
           <Header isFollowOpen={isFollowOpen} setIsFollowOpen={setIsFollowOpen} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}></Header>
           <Routes location={location} key={location.pathname}>
             <Route path='/' element={<Products />}/>
             <Route path='/info' element={<Info/>}></Route>
             <Route path='/:slug' element={<DetailedProduct/>}></Route>
+            <Route path='/checkout' element={<Checkout></Checkout>}></Route>
           </Routes>
           
-          
         </motion.div>
-    </AnimatePresence>
+        <CartTab/>
+    </div>
     
   )
 }
