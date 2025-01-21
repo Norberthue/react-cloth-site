@@ -5,7 +5,8 @@ import { motion } from 'framer-motion'
 import { PRODUCTS } from '../data/products';
 import CartItem from './CartItem';
 
-export default function Checkout() {
+export default function Checkout(props) {
+    const {changeCurrency} = props
     const carts = useSelector(store => store.cart.items);//get data about items in shopping cart
     let total = 0;
     const navigate = useNavigate();
@@ -128,7 +129,7 @@ export default function Checkout() {
                     <h2 className='p-5  text-4xl underline underline-offset-4 decoration-dashed'>Order Summary</h2>
                     <div className={`p-5 grid gap-2 `  }>
                         {carts.map((item, key) => 
-                            <CartItem key={key} data={item}/>
+                            <CartItem changeCurrency={changeCurrency} key={key} data={item}/>
                         )}
                     </div>
                     <div>

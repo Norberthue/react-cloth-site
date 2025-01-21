@@ -21,7 +21,12 @@ function App() {
   const[showImage, setShowImage] = useState(true)
   const location = useLocation()
   const statusTabCart = useSelector(store => store.cart.statusTab)
+  const [changeCurrency, setChangeCurrency] = useState('eur')
   
+  function currencyChanger(change) {
+    return () =>{setChangeCurrency(change)}
+  }
+
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious();
     if (latest > previous && latest > 850) {
@@ -1268,17 +1273,17 @@ function App() {
               </g>
           </motion.svg>
          
-          <Header isFollowOpen={isFollowOpen} setIsFollowOpen={setIsFollowOpen} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}></Header>
+          <Header isFollowOpen={isFollowOpen} setIsFollowOpen={setIsFollowOpen} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} currencyChanger={currencyChanger} changeCurrency={changeCurrency}></Header>
           <Routes location={location} key={location.pathname}>
-            <Route path='/' element={<Products />}/>
+            <Route path='/' element={<Products/>}/>
             <Route path='/info' element={<Info/>}></Route>
-            <Route path='/:slug' element={<DetailedProduct/>}></Route>
-            <Route path='/checkout' element={<Checkout></Checkout>}></Route>
+            <Route path='/:slug' element={<DetailedProduct changeCurrency={changeCurrency}/>}></Route>
+            <Route path='/checkout' element={<Checkout changeCurrency={changeCurrency}></Checkout>}></Route>
             <Route path='/place-order' element={<PlaceOrder/>}></Route>
           </Routes>
           
         </motion.div>
-        <CartTab/>
+        <CartTab changeCurrency={changeCurrency}/>
     </div>
     
   )

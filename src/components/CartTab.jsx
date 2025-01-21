@@ -6,7 +6,8 @@ import { toggleStatusTab } from '../stores/cart';
 import { Link } from 'react-router-dom';
 
 
-export default function CartTab() {
+export default function CartTab(props) {
+    const {changeCurrency} = props
     const carts = useSelector(store => store.cart.items);//get data about items in shopping cart
     const statusTab = useSelector(store => store.cart.statusTab);
     const dispatch = useDispatch()
@@ -24,7 +25,7 @@ export default function CartTab() {
             <h2 className='p-5 border-black border-t-2 border-dashed text-2xl'>Shopping Cart</h2>
             <div className='p-5'>
                 {carts.map((item, key) => 
-                    <CartItem key={key} data={item}/>
+                    <CartItem changeCurrency={changeCurrency} key={key} data={item}/>
                     
                 )}
             </div>

@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../stores/cart'
 import { main } from 'motion/react-client'
 
-export default function DetailedProduct() {
+export default function DetailedProduct(props) {
+    const {changeCurrency} = props
     const { slug } = useParams()
     const [detail, setDetail] = useState([])
     const [isShowMore, setIsShowMore] = useState(false)
@@ -61,7 +62,7 @@ export default function DetailedProduct() {
         <div className='flex flex-col gap-5 basis-2/4'>
             <h1 className=' list-disc'>{detail.name}</h1>
             <div className='flex gap-4 '> 
-                <p className=' text-5xl font-semibold'>${detail.price} USD</p>
+                <p className=' text-5xl font-semibold'>{changeCurrency === 'usd' ? '$' : '€'}{detail.price} {changeCurrency === 'usd' ? 'USD' : 'EUR'}</p>
             </div>
             <p className=''>Stock: In-Stock</p>
             {detail.hasSizes && <div className='flex gap-4 '>

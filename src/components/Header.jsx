@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import {Link} from "react-router-dom"
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleStatusTab } from '../stores/cart';
 
 export default function Header(props) {
-  const {isMenuOpen, setIsMenuOpen , isFollowOpen, setIsFollowOpen} = props
+  const {isMenuOpen, setIsMenuOpen , isFollowOpen, setIsFollowOpen, changeCurrency, currencyChanger} = props
   const [date, setDate] = useState(new Date())
   const [whichPage, setWhichPage] = useState('/')
   const [totalQuantity, setTotalQuantity] = useState(0);
   const carts = useSelector(store => store.cart.items);
   const dispatch = useDispatch()
+  const [currencyOpen, setCurrencyOpen] = useState(false)
+
   
   function handlePage(page) {
     return () => {setWhichPage(page)}
+  }
+
+  function handleCurrencyOpen() {
+    setCurrencyOpen(!currencyOpen)
   }
 
   useEffect(() => {
@@ -66,7 +72,23 @@ export default function Header(props) {
             </ul>
         </nav>
         <div className='flex gap-4'>
-            <h1 className='hidden sm:block cursor-pointer'>USD |</h1>
+            <div onClick={handleCurrencyOpen} className='hidden sm:block relative cursor-pointer'>
+              <h1>{changeCurrency === 'usd' ? 'USD' : 'EUR'} |</h1>
+              <AnimatePresence mode='popLayout' >
+              {currencyOpen &&<motion.div
+              initial={{ opacity: 0,  y: 0}}
+              animate={{opacity: 1,  y: 15}}
+              exit={{ opacity: 0,   y: 0}}
+              transition={{ duration: 0.3,  }}
+              layout
+              className={`absolute top-6 left-0 `}>
+                 <ul className='flex flex-col gap-2'>
+                    <li onClick={currencyChanger('usd')}>USD</li>
+                    <li onClick={currencyChanger('eur')}>EUR</li>
+                  </ul>
+              </motion.div>}
+              </AnimatePresence>
+            </div>
             <h1 className='cursor-pointer' onClick={handleOpenTabCart}>Cart ({totalQuantity})</h1>
         </div>
         <div
