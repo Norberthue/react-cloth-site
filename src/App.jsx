@@ -10,6 +10,7 @@ import DetailedProduct from './components/DetailedProduct'
 import CartTab from './components/CartTab'
 import { useSelector } from 'react-redux'
 import Checkout from './components/Checkout'
+import PlaceOrder from './components/PlaceOrder'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -20,8 +21,6 @@ function App() {
   const[showImage, setShowImage] = useState(true)
   const location = useLocation()
   const statusTabCart = useSelector(store => store.cart.statusTab)
-  
-  
   
   useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious();
@@ -668,7 +667,9 @@ function App() {
           </div>
           
           <motion.svg
-            className={`absolute  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none 2xl:w-[900px] ${showImage ? 'opacity-100' : 'opacity-0'} ${isFollowOpen === false ? '' : '-translate-y-full'} z-10 duration-1000 ease-in-out `} version="1.1" id="Lager_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 499.8 331" xmlSpace="preserve">
+            className={`absolute  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none 2xl:w-[900px] ${showImage ? 'opacity-100' : 'opacity-0'} 
+            ${isFollowOpen === false ? '' : '-translate-y-full'} z-10 duration-1000 ease-in-out `} 
+            version="1.1" id="Lager_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 499.8 331" xmlSpace="preserve">
               <g stroke="#5700ff" strokeWidth="2.0" fill="none">
                 <path vectorEffect="non-scaling-stroke" className="st0" d="M450.8,179.6c0,0.4,0,1.2,0,1.9c-0.1,0.3-0.2,0.5-0.4,0.8
                   c-0.3,0.5-0.6,0.9-0.9,1.4c-0.2,0.4,0,1-0.4,1.4c-0.2,0.4-0.2,0.9-0.4,1.4c-0.2,0.4-0.3,1-0.3,1.4c-0.1,0.9-0.5,1.6-0.9,2.2
@@ -1273,6 +1274,7 @@ function App() {
             <Route path='/info' element={<Info/>}></Route>
             <Route path='/:slug' element={<DetailedProduct/>}></Route>
             <Route path='/checkout' element={<Checkout></Checkout>}></Route>
+            <Route path='/place-order' element={<PlaceOrder/>}></Route>
           </Routes>
           
         </motion.div>

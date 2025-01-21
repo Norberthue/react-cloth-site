@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence , useInView, useAnimation} from 'framer-motion'
 import { PRODUCTS } from '../data/products'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../stores/cart'
+import { main } from 'motion/react-client'
 
 export default function DetailedProduct() {
     const { slug } = useParams()
@@ -12,6 +13,15 @@ export default function DetailedProduct() {
     const [quantity, setQuantity] = useState(1)
     const [selectSize, setSelectSize] = useState('S')
     let generatedId = Math.random().toFixed(2)
+    const ref = useRef(null)
+    const isInView = useInView(ref ,{ once: true})
+    const mainControls = useAnimation()
+
+    useEffect(() => {
+       if (isInView) {
+            mainControls.start('visible')
+       }
+    }, [isInView])
     
 
     useEffect(() => {
@@ -34,12 +44,19 @@ export default function DetailedProduct() {
             generatedId: generatedId,
         }))
     }
-    
+
     return (
-    <motion.div 
-    initial={{ opacity: 0 }}
-    animate={{opacity: 1 }}
-    transition={{ duration: 1,  ease: "easeInOut" }}
+    <motion.div ref={ref} 
+    variants={{
+        hidden: { opacity:0, y: 75},
+        visible: { opacity:1, y: 0}
+    }}
+    initial='hidden'
+    animate={mainControls}
+    transition={{
+        duration: 0.5,
+        delay: 0.25
+    }}
     id={detail.id} className='flex flex-col gap-10 p-10 text-3xl mt-5 sm:flex-row justify-evenly items-start '>
         <div className='flex flex-col gap-5 basis-2/4'>
             <h1 className=' list-disc'>{detail.name}</h1>
@@ -63,9 +80,9 @@ export default function DetailedProduct() {
                 <p>{isShowMore === false ? '+ Show More' : '- Hide'}</p>
                 <AnimatePresence mode='popLayout' initial={false}>
                     {isShowMore && <motion.div 
-                        initial={{ opacity: 0,  }}
-                        animate={{opacity: 1,  }}
-                        exit={{ opacity: 0,  }}
+                        initial={{ opacity: 0,  y: 0}}
+                        animate={{opacity: 1,  y: 15}}
+                        exit={{ opacity: 0,   y: 0}}
                         transition={{ duration: 0.3,  ease: "easeInOut" }}
                         layout
                         className={`absolute  top-10 left-0  pointer-events-none`}>
@@ -83,9 +100,10 @@ export default function DetailedProduct() {
             
         </div>
         <div className='basis-3/4'>
-            <div className='flex flex-col gap-10'>
+            <div 
+            className='flex flex-col gap-10'>
                 {detail.detailedImages && detail.detailedImages.map((image, index) => (
-                    <img key={index} src={image} alt={`Product Image ${index}`} />
+                    <img key={index} src={image} alt={`Product Image ${index}`}></img>
                 ))}
             </div>
         </div>

@@ -66,7 +66,7 @@ export default function Header(props) {
             </ul>
         </nav>
         <div className='flex gap-4'>
-            <h1 className='hidden sm:block cursor-pointer'>EUR |</h1>
+            <h1 className='hidden sm:block cursor-pointer'>USD |</h1>
             <h1 className='cursor-pointer' onClick={handleOpenTabCart}>Cart ({totalQuantity})</h1>
         </div>
         <div
