@@ -61,7 +61,7 @@ export default function Header(props) {
                 <li className='text-5xl font-semibold'>Facebook</li>
             </ul>       
         </div>
-        <div>
+        <div className='w-28'>
             <p>UCG {date.getHours()}<span className='ml-1 mr-1'>:</span>{(date.getMinutes() < 10 ? '0': '') +date.getMinutes()}</p>
         </div>
         <nav className='hidden basis-2/12 md:block'>
@@ -73,7 +73,7 @@ export default function Header(props) {
         </nav>
         <div className='flex gap-4'>
             <div onClick={handleCurrencyOpen} className='hidden sm:block relative cursor-pointer'>
-              <h1>{changeCurrency === 'usd' ? 'USD' : 'EUR'} |</h1>
+              <h1 className='w-14'>{changeCurrency === 'usd' ? 'USD' : 'EUR'} |</h1>
               <AnimatePresence mode='popLayout' >
               {currencyOpen &&<motion.div
               initial={{ opacity: 0,  y: 0}}
@@ -89,7 +89,7 @@ export default function Header(props) {
               </motion.div>}
               </AnimatePresence>
             </div>
-            <h1 className='cursor-pointer' onClick={handleOpenTabCart}>Cart ({totalQuantity})</h1>
+            <h1 className='cursor-pointer w-20 lg:w-28' onClick={handleOpenTabCart}>Cart ({totalQuantity})</h1>
         </div>
         <div
         
