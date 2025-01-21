@@ -11,8 +11,9 @@ export default function DetailedProduct() {
     const [isShowMore, setIsShowMore] = useState(false)
     const [quantity, setQuantity] = useState(1)
     const [selectSize, setSelectSize] = useState('S')
-
+    let generatedId = Math.random().toFixed(2)
     
+
     useEffect(() => {
         const findDetail = PRODUCTS.filter((product) => product.slug === slug)
         if (findDetail.length > 0) {
@@ -29,7 +30,8 @@ export default function DetailedProduct() {
         dispatch(addToCart({
             productId: detail.id,
             quantity: quantity,
-            size: selectSize
+            size: selectSize,
+            generatedId: generatedId,
         }))
     }
     

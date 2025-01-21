@@ -9,24 +9,25 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart(state, action) {
-            const {productId, quantity, size} = action.payload;
-            const indexProductId = (state.items).findIndex(item => item.productId === productId)
-           
+            const {productId, quantity, size, generatedId} = action.payload;
+            const indexProductId = (state.items).findIndex(item => item.productId === productId && item.size === size)
             if (indexProductId >= 0 ) {
                 //if product is already in cart
                 state.items[indexProductId].quantity += quantity  
             } else {
-                state.items.push({productId, quantity, size})
+                state.items.push({productId, quantity, size, generatedId})
             }
+            
             localStorage.setItem("carts", JSON.stringify(state.items));
+
         },
         changeQuantity(state, action){
-            const {productId, quantity} = action.payload;
-            const indexProductId = (state.items).findIndex(item => item.productId === productId);
+            const {productId, quantity, size, generatedId} = action.payload;
+            const indexProductId = (state.items).findIndex(item => item.generatedId === generatedId);
             if (quantity > 0){
                 state.items[indexProductId].quantity = quantity;
             } else {
-               state.items = (state.items).filter(item => item.productId !== productId)
+               state.items = (state.items).filter(item => item.generatedId !== generatedId)
             }
             localStorage.setItem("carts", JSON.stringify(state.items));
         },
