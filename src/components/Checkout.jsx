@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import { PRODUCTS } from '../data/products';
 import CartItem from './CartItem';
@@ -51,9 +51,9 @@ export default function Checkout(props) {
           navigate('/place-order');
         }}
         
-        //const makePayment = async () => {
-          
-        //}
+        const makePayment = async () => {
+          const stripe = await loadStripe('sk_test_51Qk10iP9lCzTi8xq0C8e2wwVENDWe2St8OE8ECa9BxotFfGSuCMPAfiHWmvZdZB07vXDT28cs0VwtpXbyVGa28Yu00UE0bSQ3n')
+        }
 
     return (
         <motion.div
@@ -142,7 +142,7 @@ export default function Checkout(props) {
                         <h2 className='p-5 text-2xl'>Total Price: ${total.toFixed(2)}</h2>
                     </div>
                     <div className='flex flex-col items-center m-2 mb-8'>
-                        <button   type='submit' form='myForm' className='group/arrow pt-2 sm:w-screen max-w-[500px] pb-2 pl-5 pr-5 font-semibold text-[13px] rounded-xl transition duration-150 ease-in-out bg-black text-white' >
+                        <button  type='submit' form='myForm' className='group/arrow pt-2 sm:w-screen max-w-[500px] pb-2 pl-5 pr-5 font-semibold text-[13px] rounded-xl transition duration-150 ease-in-out bg-black text-white' >
                             Place Order
                             <i className="group-hover/arrow:ml-1 delay-100 duration-200  fa-solid fa-arrow-right pl-1 "></i>
                          </button>

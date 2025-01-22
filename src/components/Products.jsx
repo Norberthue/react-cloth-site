@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import { PRODUCTS } from '../data/products'
 import { motion } from 'framer-motion'
 
-
-
 export default function Products() {
     const [hoveredProductId, setHoveredProductId] = useState(null)
     return (

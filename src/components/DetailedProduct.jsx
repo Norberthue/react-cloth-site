@@ -4,7 +4,7 @@ import { motion, AnimatePresence , useInView, useAnimation} from 'framer-motion'
 import { PRODUCTS } from '../data/products'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../stores/cart'
-import { main } from 'motion/react-client'
+
 
 export default function DetailedProduct(props) {
     const {changeCurrency} = props
