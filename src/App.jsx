@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react'
 
 import Header from './components/Header'
 import Products from './components/Products'
-import { Route, Routes, useLocation, useParams } from "react-router-dom"
+import { Route, Routes, useLocation} from "react-router-dom"
 import Info from './components/info'
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
-import { AnimatePresence } from 'framer-motion';
 import DetailedProduct from './components/DetailedProduct'
 import CartTab from './components/CartTab'
 import { useSelector } from 'react-redux'

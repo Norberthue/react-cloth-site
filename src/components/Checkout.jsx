@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import { PRODUCTS } from '../data/products';
 import CartItem from './CartItem';
+import { loadStripe } from '@stripe/stripe-js';
 
 export default function Checkout(props) {
     const {changeCurrency} = props
@@ -49,6 +50,11 @@ export default function Checkout(props) {
         }else {
           navigate('/place-order');
         }}
+        
+        //const makePayment = async () => {
+          
+        //}
+
     return (
         <motion.div
         initial={{ opacity: 0 }}
@@ -136,7 +142,7 @@ export default function Checkout(props) {
                         <h2 className='p-5 text-2xl'>Total Price: ${total.toFixed(2)}</h2>
                     </div>
                     <div className='flex flex-col items-center m-2 mb-8'>
-                        <button  type='submit' form='myForm' className='group/arrow pt-2 sm:w-screen max-w-[500px] pb-2 pl-5 pr-5 font-semibold text-[13px] rounded-xl transition duration-150 ease-in-out bg-black text-white' >
+                        <button   type='submit' form='myForm' className='group/arrow pt-2 sm:w-screen max-w-[500px] pb-2 pl-5 pr-5 font-semibold text-[13px] rounded-xl transition duration-150 ease-in-out bg-black text-white' >
                             Place Order
                             <i className="group-hover/arrow:ml-1 delay-100 duration-200  fa-solid fa-arrow-right pl-1 "></i>
                          </button>
