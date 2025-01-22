@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 
-import Header from './components/Header'
-import Products from './components/Products'
+import Header from './components/Header.jsx'
+import Products from './components/Products.jsx'
 import { Route, Routes, useLocation} from "react-router-dom"
-import Info from './components/info'
+import Info from './components/Info'
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion'
-import DetailedProduct from './components/DetailedProduct'
-import CartTab from './components/CartTab'
+import DetailedProduct from './components/DetailedProduct.jsx'
+import CartTab from './components/CartTab.jsx'
 import { useSelector } from 'react-redux'
-import Checkout from './components/Checkout'
-import PlaceOrder from './components/PlaceOrder'
+import Checkout from './components/Checkout.jsx'
+import PlaceOrder from './components/PlaceOrder.jsx'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
