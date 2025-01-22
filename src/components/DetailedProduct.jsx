@@ -43,6 +43,9 @@ export default function DetailedProduct(props) {
             quantity: quantity,
             size: selectSize,
             generatedId: generatedId,
+            name: detail.name,
+            image: detail.image,
+            price: detail.price
         }))
     }
 

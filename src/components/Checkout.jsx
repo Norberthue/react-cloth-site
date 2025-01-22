@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import { PRODUCTS } from '../data/products';
 import CartItem from './CartItem';
-import { loadStripe } from '@stripe/stripe-js';
+
 
 export default function Checkout(props) {
     const {changeCurrency} = props
@@ -51,9 +51,6 @@ export default function Checkout(props) {
           navigate('/place-order');
         }}
         
-        const makePayment = async () => {
-          const stripe = await loadStripe('sk_test_51Qk10iP9lCzTi8xq0C8e2wwVENDWe2St8OE8ECa9BxotFfGSuCMPAfiHWmvZdZB07vXDT28cs0VwtpXbyVGa28Yu00UE0bSQ3n')
-        }
 
     return (
         <motion.div

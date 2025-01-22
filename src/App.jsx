@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux'
 import Checkout from './components/Checkout.jsx'
 import PlaceOrder from './components/PlaceOrder.jsx'
 
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isFollowOpen, setIsFollowOpen] = useState(false)
