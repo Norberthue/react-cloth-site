@@ -22,6 +22,7 @@ function App() {
   const location = useLocation()
   const statusTabCart = useSelector(store => store.cart.statusTab)
   const [changeCurrency, setChangeCurrency] = useState('eur')
+  const [popUp, setPopUp] = useState(false)
   
   function currencyChanger(change) {
     return () =>{setChangeCurrency(change)}
@@ -1272,8 +1273,15 @@ function App() {
                   c-0.2,0.7,0.6,1.3,0.3,2.1c-0.4,0.7-0.9,1.4-1.3,2.1c-0.4,0.1-0.8,0.1-1.1,0.2C102.6,131.6,102.2,131.7,102.1,131.8z"></path>
               </g>
           </motion.svg>
+
+          <div className={`fixed left-1/2 -translate-x-1/2 z-10  text-black  pt-2 pr-4 pl-4 pb-2
+            ${popUp ? 'opacity-100 top-36 pointer-events-auto' : 'opacity-0 -top-10 pointer-events-none'} duration-500 ease-in-out`}>
+            <p className='text-center text-4xl xl:text-6xl underline-offset-6 underline decoration-dashed  '>
+              Thank you for your subscription &#x2665;.
+            </p>
+          </div>
          
-          <Header isFollowOpen={isFollowOpen} setIsFollowOpen={setIsFollowOpen} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} currencyChanger={currencyChanger} changeCurrency={changeCurrency}></Header>
+          <Header popUp={popUp} setPopUp={setPopUp}  isFollowOpen={isFollowOpen} setIsFollowOpen={setIsFollowOpen} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} currencyChanger={currencyChanger} changeCurrency={changeCurrency}></Header>
           <Routes location={location} key={location.pathname}>
             <Route path='/' element={<Products/>}/>
             <Route path='/info' element={<Info/>}></Route>

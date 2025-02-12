@@ -16,7 +16,7 @@ export default function Products() {
           <div key={product.id} className={`flex-col gap-10 duration-500 ${hoveredProductId && hoveredProductId !== product.id ? 'blur-md' : ''}`}>
             <div
               
-              className={`cursor-pointer `}
+              className={`cursor-pointer`}
               onMouseEnter={() => setHoveredProductId(product.id)}
               onMouseLeave={() => setHoveredProductId(null)}
             >

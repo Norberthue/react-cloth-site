@@ -5,15 +5,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { toggleStatusTab } from '../stores/cart';
 
 export default function Header(props) {
-  const {isMenuOpen, setIsMenuOpen , isFollowOpen, setIsFollowOpen, changeCurrency, currencyChanger} = props
+  const {isMenuOpen, setIsMenuOpen , isFollowOpen, setIsFollowOpen, changeCurrency, currencyChanger, setPopUp, popUp} = props
   const [date, setDate] = useState(new Date())
   const [whichPage, setWhichPage] = useState('/')
   const [totalQuantity, setTotalQuantity] = useState(0);
   const carts = useSelector(store => store.cart.items);
   const dispatch = useDispatch()
   const [currencyOpen, setCurrencyOpen] = useState(false)
+   const [formState, setFormState] = useState({
+    email: '',
+   });
 
-  
   function handlePage(page) {
     return () => {setWhichPage(page)}
   }
@@ -22,12 +24,14 @@ export default function Header(props) {
     setCurrencyOpen(!currencyOpen)
   }
 
+  //time
   useEffect(() => {
     var timer = setInterval(() => setDate(new Date()), 1000)
     return function cleanup() {
         clearInterval(timer)
     }
   })
+
    //total count of items
    useEffect(() => {
       let total = 0;
@@ -39,6 +43,34 @@ export default function Header(props) {
   const handleOpenTabCart = () => {
     dispatch(toggleStatusTab())
   }
+
+  //pop up for newsletter
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!formState.email) {
+      alert('Please fill out all required fields');
+      return;
+    }else {
+      setPopUp(true)
+    }}
+
+    function handleInputChange(event) {
+      const { name, value } = event.target;
+      setFormState(prevState => ({ ...prevState, [name]: value }));
+    }
+
+   
+   
+     useEffect(() => {
+       if(popUp) {
+         setTimeout(() => {
+          setPopUp(false)
+          setFormState({email: ''})
+        }, 2000)
+       }
+     }, [popUp])
+
+
   return (
     <motion.div
     initial={{opacity: 0}}
@@ -93,20 +125,23 @@ export default function Header(props) {
         </div>
         <div
         
-        className={`absolute  left-1/2 -translate-x-1/2 opacity-0 hidden sm:flex justify-between border-black border-b-2 pb-2 md:w-[700px] lg:w-[900px] xl:w-[1330px] 2xl:w-[1800px]      
+        className={`absolute left-1/2 -translate-x-1/2 opacity-0 hidden sm:flex justify-between border-black border-b-2 pb-2 md:w-[700px] lg:w-[900px] xl:w-[1330px] 2xl:w-[1800px]      
           bg-white 
             ${isFollowOpen ? 'opacity-100 -top-5 pointer-events-auto': 'opacity-0 -top-10 pointer-events-none '} duration-500 ease-in-out`}
             >
                 <div className='flex text-sm lg:text-2xl  gap-4'>
                     <p>Newsletter:</p>
-                    <input className='border-b-2 border-black focus:outline-none' type='text' placeholder='Enter e-mail here'></input>
-                    <butt>Subscribe</butt>
+                    <form onSubmit={handleSubmit} className='flex text-sm lg:text-2xl  gap-4'>
+                      <input onChange={handleInputChange} type='email' name="email" value={formState.email} className='border-b-2 border-black focus:outline-none' placeholder='Enter e-mail here'></input>
+                      <button type='submit'>Subscribe</button>
+                    </form>
+                    
                 </div>
                 <div className='flex text-sm  lg:text-2xl gap-4'>
                     <div>Follow us on:</div>
-                    <div>Facebook</div>
-                    <div>Instagram</div>
-                    <div>Twitter</div>
+                    <div className='cursor-pointer'>Facebook</div>
+                    <div className='cursor-pointer'>Instagram</div>
+                    <div className='cursor-pointer'>Twitter</div>
                 </div>
         </div>
         
