@@ -54,21 +54,18 @@ export default function Header(props) {
       setPopUp(true)
     }}
 
-    function handleInputChange(event) {
-      const { name, value } = event.target;
-      setFormState(prevState => ({ ...prevState, [name]: value }));
-    }
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setFormState(prevState => ({ ...prevState, [name]: value }));
+  }
 
-   
-   
-     useEffect(() => {
-       if(popUp) {
-         setTimeout(() => {
-          setPopUp(false)
-          setFormState({email: ''})
-        }, 2000)
-       }
-     }, [popUp])
+  useEffect(() => {
+    if(popUp) {
+      setTimeout(() => {
+      setPopUp(false)
+      setFormState({email: ''})
+    }, 2000)}
+    }, [popUp])
 
 
   return (
