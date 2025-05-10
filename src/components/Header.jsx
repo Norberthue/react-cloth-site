@@ -91,7 +91,7 @@ export default function Header(props) {
             </ul>       
         </div>
         <div className='w-28'>
-            <p>UCG {date.getHours()}<span className='ml-1 mr-1'>:</span>{(date.getMinutes() < 10 ? '0': '') + date.getMinutes()}</p>
+            <p><Link className='transition-all hover:underline underline-offset-4 duration-200' to={'/'}>UCG</Link> {date.getHours()}<span className='ml-1 mr-1'>:</span>{(date.getMinutes() < 10 ? '0': '') + date.getMinutes()}</p>
         </div>
         <nav className='hidden basis-2/12 md:block'>
             <ul className='flex gap-4 items-center text-center'>
